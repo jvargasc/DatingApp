@@ -1,7 +1,5 @@
-using System.Text;
 using API.Extensions;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
+using API.MiddleWare;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +26,8 @@ if (app.Environment.IsDevelopment())
 
 //Commented in the course
 // app.UseHttpsRedirection();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseCors(builder =>
     builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200")

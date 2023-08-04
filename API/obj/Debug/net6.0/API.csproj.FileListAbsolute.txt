@@ -223,3 +223,4 @@ C:\Users\jvargas\source\Git\DatingApp\API\bin\Debug\net6.0\runtimes\win\lib\nets
 C:\Users\jvargas\source\Git\DatingApp\API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\jvargas\source\Git\DatingApp\API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\manager\source\repos\DatingApp\api\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\jvargas\source\Git\DatingApp\API\bin\Debug\net6.0\Newtonsoft.Json.dll
