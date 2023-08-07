@@ -228,3 +228,6 @@ C:\Users\manager\source\repos\DatingApp\api\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\manager\source\repos\DatingApp\api\bin\Debug\net6.0\Data\UserSeedData.json
 C:\Users\manager\source\repos\DatingApp\api\bin\Debug\net6.0\AutoMapper.dll
 C:\Users\manager\source\repos\DatingApp\api\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\jvargas\source\Git\DatingApp\API\bin\Debug\net6.0\Data\UserSeedData.json
+C:\Users\jvargas\source\Git\DatingApp\API\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\jvargas\source\Git\DatingApp\API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
