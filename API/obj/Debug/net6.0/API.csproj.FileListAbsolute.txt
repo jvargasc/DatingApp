@@ -234,3 +234,4 @@ C:\Users\jvargas\source\Git\DatingApp\API\bin\Debug\net6.0\AutoMapper.Extensions
 C:\Users\jvargas\source\Git\DatingApp\API\bin\Debug\net6.0\Microsoft.AspNet.Identity.Core.dll
 C:\Users\manager\source\repos\DatingApp\api\bin\Debug\net6.0\Microsoft.AspNet.Identity.Core.dll
 C:\Users\manager\source\repos\DatingApp\api\bin\Debug\net6.0\CloudinaryDotNet.dll
+C:\Users\jvargas\source\Git\DatingApp\API\bin\Debug\net6.0\CloudinaryDotNet.dll
