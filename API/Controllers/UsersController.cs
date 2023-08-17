@@ -1,5 +1,7 @@
+using System.Net;
 using System.Security.Claims;
 using API.DTOs;
+using API.Helpers;
 using API.Entities;
 using API.Extensions;
 using API.Interfaces;
@@ -25,24 +27,23 @@ public class UsersController : BaseApiController
     }
 
     [HttpGet("getusers")]
-    public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
+    public async Task<ActionResult<PagedList<MemberDto>>> GetUsers([FromQuery] UserParams userParams)
     {
-        return Ok(await _userRepository.GetMembersAsync());
-        // var users = await _userRepository.GetUsersAsync();
-        // var usersToReturn = _mapper.Map<IEnumerable<MemberDto>>(users);
+        var users = await _userRepository.GetMembersAsync(userParams);
+        
+        Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage, users.PageSize,
+                users.TotalCount, users.TotalPages));
 
-        // return Ok(usersToReturn);
+        return Ok(users);
+
     }
 
     [HttpGet("getuser/{username}")]
     public async Task<ActionResult<MemberDto>> GetUser(string username)
     {
+
         return Ok(await _userRepository.GetMemberByUserNameAsync(username));
 
-        // var user = await _userRepository.GetUserByUserNameAsync(username);
-        // var userToReturn = _mapper.Map<MemberDto>(user);
-
-        // return Ok(userToReturn);
     }
 
     [HttpPut]
