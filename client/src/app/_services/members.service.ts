@@ -4,6 +4,7 @@ import { map, of } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { Member } from '../_models/member';
 import { PaginatedResult } from '../_models/pagination';
+import { UserParams } from '../_models/userParams';
 
 @Injectable({
   providedIn: 'root'
@@ -15,15 +16,22 @@ export class MembersService {
 
   constructor(private http: HttpClient) { }
 
-  getMembers(page?:number, itemsPerPage?: number) {
-    let params = new HttpParams();
+  getMembers(userParams: UserParams) {
+    let params = this.getPaginationHeaders(userParams.pageNumber, userParams.pageSize);
 
-    if (page && itemsPerPage) {
-      params = params.append('pageNumber', page);
-      params = params.append('pageSize', itemsPerPage);
-    }
+    return this.getPaginatedResult(params);
 
-    return this.http.get<Member[]>(this.baseUrl + 'users/getusers', {observe: 'response', params}).pipe(
+    // if (this.members.length >0) return of(this.members);
+    // return this.http.get<Member[]>(this.baseUrl + 'users/getusers').pipe(
+      // map(members => {
+      //   this.members = members;
+      //   return members;
+      // })
+    // );
+  }
+
+  private getPaginatedResult(params: HttpParams) {
+    return this.http.get<Member[]>(this.baseUrl + 'users/getusers', { observe: 'response', params }).pipe(
       map(response => {
         if (response.body) {
           this.paginatedResult.result = response.body;
@@ -36,14 +44,15 @@ export class MembersService {
       })
 
     );
+  }
 
-    // if (this.members.length >0) return of(this.members);
-    // return this.http.get<Member[]>(this.baseUrl + 'users/getusers').pipe(
-      // map(members => {
-      //   this.members = members;
-      //   return members;
-      // })
-    // );
+  private getPaginationHeaders(pageNumber: number, pageSize: number) {
+    let params = new HttpParams();
+
+    params = params.append('pageNumber', pageNumber);
+    params = params.append('pageSize', pageSize);
+
+    return params;
   }
 
   getMember(username: string) {
