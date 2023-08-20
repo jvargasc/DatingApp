@@ -10,37 +10,33 @@ import { UserParams } from '../_models/userParams';
   providedIn: 'root'
 })
 export class MembersService {
-  baseUrl = environment.apiUrl;
+  baseUrl = environment.apiUrl + 'users/';
   members: Member[] = [];
-  paginatedResult: PaginatedResult<Member[]> = new PaginatedResult<Member[]>;
 
   constructor(private http: HttpClient) { }
 
   getMembers(userParams: UserParams) {
     let params = this.getPaginationHeaders(userParams.pageNumber, userParams.pageSize);
 
-    return this.getPaginatedResult(params);
+    params = params.append('minAge', userParams.minAge);
+    params = params.append('maxAge', userParams.maxAge);
+    params = params.append('gender', userParams.gender);
 
-    // if (this.members.length >0) return of(this.members);
-    // return this.http.get<Member[]>(this.baseUrl + 'users/getusers').pipe(
-      // map(members => {
-      //   this.members = members;
-      //   return members;
-      // })
-    // );
+    return this.getPaginatedResult<Member[]>(this.baseUrl + 'getusers', params);
   }
 
-  private getPaginatedResult(params: HttpParams) {
-    return this.http.get<Member[]>(this.baseUrl + 'users/getusers', { observe: 'response', params }).pipe(
+  private getPaginatedResult<T>(url: string, params: HttpParams) {
+    const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>;
+    return this.http.get<T>(url, { observe: 'response', params }).pipe(
       map(response => {
         if (response.body) {
-          this.paginatedResult.result = response.body;
+          paginatedResult.result = response.body;
         }
         const pagination = response.headers.get('Pagination');
         if (pagination) {
-          this.paginatedResult.pagination = JSON.parse(pagination);
+          paginatedResult.pagination = JSON.parse(pagination);
         }
-        return this.paginatedResult;
+        return paginatedResult;
       })
 
     );
@@ -58,11 +54,11 @@ export class MembersService {
   getMember(username: string) {
     const member = this.members.find(x => x.userName === username);
     if (member) return of(member);
-    return this.http.get<Member>(this.baseUrl + 'users/getuser/' + username);
+    return this.http.get<Member>(this.baseUrl + 'getuser/' + username);
   }
 
   updateMember(member: Member) {
-    return this.http.put(this.baseUrl + 'users', member).pipe(
+    return this.http.put(this.baseUrl, member).pipe(
       map(() => {
         const index = this.members.indexOf(member);
         this.members[index] = {...this.members[index], ...member}
@@ -71,11 +67,11 @@ export class MembersService {
   }
 
   setMainPhoto(photoId: number) {
-    return this.http.put(this.baseUrl + 'users/set-main-photo/' + photoId, {});
+    return this.http.put(this.baseUrl + 'set-main-photo/' + photoId, {});
   }
 
   deletePhoto(photoId: number) {
-    return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId);
+    return this.http.delete(this.baseUrl + 'delete-photo/' + photoId);
   }
 
 }
