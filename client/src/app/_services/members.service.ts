@@ -12,15 +12,22 @@ import { UserParams } from '../_models/userParams';
 export class MembersService {
   baseUrl = environment.apiUrl + 'users/';
   members: Member[] = [];
+  memberCache = new Map();
 
   constructor(private http: HttpClient) { }
 
   getMembers(userParams: UserParams) {
+    const response = this.memberCache.get(Object.values(userParams).join('-'));
+
+    if (response) return of(response);
+    // console.log(this.memberCache);
+
     let params = this.getPaginationHeaders(userParams.pageNumber, userParams.pageSize);
 
     params = params.append('minAge', userParams.minAge);
     params = params.append('maxAge', userParams.maxAge);
     params = params.append('gender', userParams.gender);
+    params = params.append('orderBy', userParams.orderBy);
 
     return this.getPaginatedResult<Member[]>(this.baseUrl + 'getusers', params);
   }
