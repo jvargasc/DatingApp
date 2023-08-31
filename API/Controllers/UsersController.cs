@@ -1,5 +1,3 @@
-using System.Net;
-using System.Security.Claims;
 using API.DTOs;
 using API.Helpers;
 using API.Entities;
