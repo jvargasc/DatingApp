@@ -2,6 +2,7 @@ using API.Data;
 using API.Entities;
 using API.Extensions;
 using API.MiddleWare;
+using API.SignalR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,13 +35,17 @@ if (app.Environment.IsDevelopment())
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseCors(builder =>
-    builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200")
+    builder.AllowAnyHeader()
+    .AllowAnyMethod()
+    .AllowCredentials()
+    .WithOrigins("https://localhost:4200")
     );
 
 app.UseAuthentication(); //Do you have a valid token?
 app.UseAuthorization(); //What are the scopes of your actions
 
 app.MapControllers();
+app.MapHub<Presence>("hubs/presence");
 
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
