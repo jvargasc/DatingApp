@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jvargas\\source\\Git\\DatingApp\\API\\API.csproj": {}
+    "C:\\Users\\manager\\source\\repos\\DatingApp\\api\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jvargas\\source\\Git\\DatingApp\\API\\API.csproj": {
+    "C:\\Users\\manager\\source\\repos\\DatingApp\\api\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jvargas\\source\\Git\\DatingApp\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\manager\\source\\repos\\DatingApp\\api\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\jvargas\\source\\Git\\DatingApp\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\jvargas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jvargas\\source\\Git\\DatingApp\\API\\obj\\",
+        "projectPath": "C:\\Users\\manager\\source\\repos\\DatingApp\\api\\API.csproj",
+        "packagesPath": "C:\\Users\\manager\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\manager\\source\\repos\\DatingApp\\api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -19,7 +19,7 @@
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\jvargas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\manager\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -29,9 +29,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://pkgs.dev.azure.com/LaColonial/LaColonial/_packaging/Colonial_Feed/nuget/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
@@ -98,8 +96,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -111,7 +108,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.316\\RuntimeIdentifierGraph.json"
         }
       }
     }
