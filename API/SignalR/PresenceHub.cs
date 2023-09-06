@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.SignalR;
 namespace API.SignalR;
 
 [Authorize]
-public class Presence : Hub
+public class PresenceHub : Hub
 {
     public override async Task OnConnectedAsync()
     {

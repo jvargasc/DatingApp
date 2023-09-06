@@ -14,8 +14,6 @@ export class PresenceService {
   constructor(private toastr: ToastrService) { }
 
   createHubConnection(user: User) {
-    console.log("createHubConnection()");
-    console.log(user);
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(this.hubUrl + 'presence', {
         accessTokenFactory: () => user.token
@@ -25,12 +23,12 @@ export class PresenceService {
 
     this.hubConnection?.start().catch(error => console.log(error));
 
-    this.hubConnection.on('UsersIsOnline', username => {
+    this.hubConnection.on('UserIsOnline', username => {
       this.toastr.info(username + ' has connected');
     });
 
-    this.hubConnection.on('UsersIsOffline', username => {
-      this.toastr.info(username + ' has disconnected');
+    this.hubConnection.on('UserIsOffline', username => {
+      this.toastr.warning(username + ' has disconnected');
     });
 
   }

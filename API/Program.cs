@@ -45,7 +45,7 @@ app.UseAuthentication(); //Do you have a valid token?
 app.UseAuthorization(); //What are the scopes of your actions
 
 app.MapControllers();
-app.MapHub<Presence>("hubs/presence");
+app.MapHub<PresenceHub>("hubs/presence");
 
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
