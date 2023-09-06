@@ -14,6 +14,8 @@ export class PresenceService {
   constructor(private toastr: ToastrService) { }
 
   createHubConnection(user: User) {
+    console.log("createHubConnection()");
+    console.log(user);
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(this.hubUrl + 'presence', {
         accessTokenFactory: () => user.token
