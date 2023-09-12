@@ -101,9 +101,6 @@ public class MessageRepository : IMessageRepository
             {
                 message.DateRead = DateTime.UtcNow;
             }
-
-            await _context.SaveChangesAsync();
-
         }
 
         return _mapper.Map<IEnumerable<MessageDto>>(messages);
@@ -112,11 +109,6 @@ public class MessageRepository : IMessageRepository
     public void RemoveConnection(Connection connection)
     {
         _context.Connections.Remove(connection);
-    }
-
-    public async Task<bool> SaveAllAsync()
-    {
-        return await _context.SaveChangesAsync() > 0;
     }
 
 }
