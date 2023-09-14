@@ -48,7 +48,8 @@ public class UsersController : BaseApiController
     public async Task<ActionResult<MemberDto>> GetUser(string username)
     {
 
-        return Ok(await _uow.UserRepository.GetMemberByUserNameAsync(username));
+        var currentUsername = User.GetUserName();
+        return await _uow.UserRepository.GetMemberAsync(username, isCurrentUser: currentUsername == username);
 
     }
 
@@ -69,33 +70,25 @@ public class UsersController : BaseApiController
     [HttpPost("add-photo")]
     public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file)
     {
-        var user = await _uow.UserRepository.GetUserByUserNameAsync(User.GetUserName());
-
-        if (user == null) return NotFound();
-
+        var user = await
+        _uow.UserRepository.GetUserByUserNameAsync(User.GetUserName());
         var result = await _photoService.AddPhotoAsync(file);
-
         if (result.Error != null) return BadRequest(result.Error.Message);
-
         var photo = new Photos
         {
             Url = result.SecureUrl.AbsoluteUri,
             PublicId = result.PublicId
         };
-
-        if (user.Photos.Count == 0) photo.IsMain = true;
-
         user.Photos.Add(photo);
-
         if (await _uow.Complete())
         {
-            // return _mapper.Map<PhotoDto>(photo);
-            return CreatedAtAction(nameof(GetUser),
-                new { username = user.UserName },
-                _mapper.Map<PhotoDto>(photo));
+            return CreatedAtRoute("GetUser", new
+            {
+                username =
+            user.UserName
+            }, _mapper.Map<PhotoDto>(photo));
         }
-
-        return BadRequest("Problem adding photo");
+        return BadRequest("Problem addding photo");
     }
 
     [HttpPut("set-main-photo/{photoId}")]
@@ -124,7 +117,7 @@ public class UsersController : BaseApiController
     public async Task<ActionResult> DeletePhoto(int photoId)
     {
         var user = await _uow.UserRepository.GetUserByUserNameAsync(User.GetUserName());
-        var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
+        var photo = await _uow.PhotoRepository.GetPhotoById(photoId);
 
         if (photo == null) return NotFound();
 
@@ -142,5 +135,7 @@ public class UsersController : BaseApiController
 
         return BadRequest("Problem deleting photo");
     }
+
+
 
 }
