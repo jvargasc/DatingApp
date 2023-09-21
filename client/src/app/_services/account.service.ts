@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../_models/User';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { PresenceService } from './presence.service';
 
 @Injectable({
