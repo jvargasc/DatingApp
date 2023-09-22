@@ -13,14 +13,6 @@ public static class ApplicationServiceExtensions
                   IConfiguration config)
     {
 
-        services.AddDbContext<Data.DataContext>(
-        opt =>
-        {
-            // opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
-            opt.UseNpgsql(config.GetConnectionString("DefaultConnection"));
-        }
-        );
-
         services.AddCors();
         services.AddScoped<ITokenService, TokenService>();
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
