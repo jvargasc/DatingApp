@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "a0df8xAzGaZqhxDgS9ysN41oUSv6e211DRvHcd+I4d8=",
+  "Hash": "dy0GJgLyKBayFJu/JUHwWwc/RcVmoJPVcdckvsvMxQo=",
   "Source": "API",
   "BasePath": "_content/API",
   "Mode": "Default",
@@ -170,12 +170,12 @@
       "OriginalItemSpec": "wwwroot\\index.html"
     },
     {
-      "Identity": "C:\\Users\\manager\\source\\repos\\DatingApp\\api\\wwwroot\\main.55cfadf146e99f54.js",
+      "Identity": "C:\\Users\\manager\\source\\repos\\DatingApp\\api\\wwwroot\\main.fad23ce538372e5d.js",
       "SourceId": "API",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\manager\\source\\repos\\DatingApp\\api\\wwwroot\\",
       "BasePath": "_content/API",
-      "RelativePath": "main.55cfadf146e99f54.js",
+      "RelativePath": "main.fad23ce538372e5d.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -184,7 +184,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\main.55cfadf146e99f54.js"
+      "OriginalItemSpec": "wwwroot\\main.fad23ce538372e5d.js"
     },
     {
       "Identity": "C:\\Users\\manager\\source\\repos\\DatingApp\\api\\wwwroot\\polyfills.7f98574c8bab9a70.js",
