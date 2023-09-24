@@ -41,7 +41,6 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
     this.route.data.subscribe({
       next: data => this.member = data['member']
     })
@@ -53,7 +52,6 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
     })
 
     this.getImages();
-
   }
 
   ngOnDestroy() {

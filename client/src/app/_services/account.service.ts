@@ -53,6 +53,7 @@ export class AccountService {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
     this.presenceService.stopHubConnection();
+    return true;
   }
 
   getDecodedToken(token: string) {
