@@ -1,9 +1,8 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, of, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Member } from '../_models/member';
-import { PaginatedResult } from '../_models/pagination';
 import { UserParams } from '../_models/userParams';
 import { AccountService } from './account.service';
 import { User } from '../_models/User';
@@ -20,6 +19,7 @@ export class MembersService {
   userParams?: UserParams;
 
   constructor(private http: HttpClient, private accountService: AccountService) {
+
     this.accountService.currentUser$.pipe(take(1)).subscribe({
       next: user => {
         if (user) {
@@ -28,6 +28,7 @@ export class MembersService {
         }
       }
     });
+
   }
 
   getUserParams() {
@@ -40,7 +41,6 @@ export class MembersService {
 
   getMembers(userParams: UserParams) {
     const response = this.memberCache.get(Object.values(userParams).join('-'));
-    // console.log(response);
 
     if (response) return of(response);
 
