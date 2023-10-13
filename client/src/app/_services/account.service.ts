@@ -14,6 +14,9 @@ export class AccountService {
   private currentUserSource = new BehaviorSubject<User | null>(null);
   currentUser$ = this.currentUserSource.asObservable();
 
+  private userLogged = new BehaviorSubject<boolean>(false);
+  userIsLogged$ = this.userLogged.asObservable();
+
   constructor(private http: HttpClient, private presenceService: PresenceService) { }
 
   login(model: any) {
@@ -23,6 +26,7 @@ export class AccountService {
         const user = response;
         if (user) {
           this.setCurrentUser(user);
+          this.userLogged.next(true);
         }
       })
     );
@@ -50,6 +54,7 @@ export class AccountService {
   }
 
   logout() {
+    this.userLogged.next(false);
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
     this.presenceService.stopHubConnection();

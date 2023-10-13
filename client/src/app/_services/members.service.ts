@@ -29,6 +29,13 @@ export class MembersService {
       }
     });
 
+    this.accountService.userIsLogged$.pipe().subscribe({
+      next: isLogged => {
+        if(isLogged)
+          this.updateCurrentUser();
+      }
+    });
+
   }
 
   getUserParams() {
@@ -106,6 +113,15 @@ export class MembersService {
       return this.userParams
     }
     return ;
+  }
+
+ updateCurrentUser(){
+    this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
+      if(user) {
+        this.user = user;
+        this.userParams = new UserParams(user!);
+      }
+    })
   }
 
 }
